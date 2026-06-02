@@ -1,0 +1,18 @@
+# Dependencies (الأهم)
+node_modules
+package-lock.json
+yarn.lock
+
+# Build output
+dist
+build
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE files (اختياري)
+.vscode
+.idea

@@ -4,6 +4,4 @@
 
 [build.environment]
   NODE_VERSION = "20"
-
-[[plugins]]
-  package = "@netlify/plugin-vite"
+  NPM_FLAGS = "--include=dev"
