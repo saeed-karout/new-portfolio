@@ -1,0 +1,263 @@
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  /* clip-path مشكلة في الموبايل - نعلقها أو نعدلها */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* للمتصفحات التي تدعم clip-path بشكل جيد (اختياري) */
+@media (min-width: 768px) {
+  .card {
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+}
+
+.card:hover {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 245, 196, 0.2);
+  border-color: rgba(0, 245, 196, 0.3);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 245, 196, 0.03), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card:hover::before { opacity: 1; }
+
+/* Thumbnail */
+.thumb {
+  height: 210px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--surface), var(--card));
+  flex-shrink: 0;
+}
+
+/* للموبايل - تقليل الارتفاع */
+@media (max-width: 768px) {
+  .thumb {
+    height: 180px;
+  }
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .thumbImg { transform: scale(1.04); }
+
+.thumbFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.thumbEmoji {
+  font-size: 2.5rem;
+  opacity: 0.4;
+}
+
+.thumbTitle {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+  letter-spacing: 3px;
+  color: var(--accent);
+  opacity: 0.25;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 12px;
+}
+
+.thumbOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--card));
+}
+
+/* Tags */
+.tags {
+  position: absolute;
+  top: 12px; left: 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+/* للموبايل - تصغير حجم الـ tags */
+@media (max-width: 768px) {
+  .tags {
+    top: 8px;
+    left: 8px;
+  }
+  
+  .tag {
+    padding: 2px 6px;
+    font-size: 0.5rem;
+  }
+}
+
+.tag {
+  padding: 3px 10px;
+  background: rgba(3, 5, 8, 0.7);
+  border: 1px solid;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+/* External links */
+.extLinks {
+  position: absolute;
+  top: 12px; right: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.3s;
+}
+
+/* للموبايل - إظهار الأزرار دائماً بدون hover */
+@media (max-width: 768px) {
+  .extLinks {
+    opacity: 1;
+    transform: translateX(0);
+    top: 8px;
+    right: 8px;
+  }
+  
+  .extBtn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+}
+
+.card:hover .extLinks {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.extBtn {
+  width: 34px; height: 34px;
+  background: rgba(3, 5, 8, 0.85);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s;
+}
+
+.extBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Body */
+.body {
+  padding: 20px 20px 12px;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* للموبايل */
+@media (max-width: 768px) {
+  .body {
+    padding: 15px 15px 10px;
+  }
+  
+  .title {
+    font-size: 1.2rem;
+  }
+  
+  .desc {
+    font-size: 0.75rem;
+  }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 2px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  padding: 12px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+/* للموبايل */
+@media (max-width: 768px) {
+  .footer {
+    padding: 10px 15px 15px;
+  }
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(0, 245, 196, 0.25);
+  letter-spacing: 2px;
+}
+
+.viewBtn {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s;
+}
+
+.viewBtn:hover { gap: 12px; }
+
+/* إضافات مهمة للشبكة (Grid) في الموبايل */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 0 16px !important;
+  }
+}

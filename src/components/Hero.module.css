@@ -1,0 +1,284 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid background */
+.gridBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 245, 196, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 196, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+/* Orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.orb1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0, 245, 196, 0.12), transparent 70%);
+  top: -100px; right: -100px;
+  animation: orbFloat1 12s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 70%);
+  bottom: -50px; left: 10%;
+  animation: orbFloat2 15s ease-in-out infinite;
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.tag::before {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Name */
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -2px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s forwards;
+}
+
+.nameLine2 {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0, 245, 196, 0.4);
+}
+
+.accentWord {
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+}
+
+/* Glitch effect */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
+.glitch::before {
+  color: var(--accent);
+  animation: glitch1 4s infinite;
+  transform: translateX(-2px);
+}
+
+.glitch::after {
+  color: var(--accent2);
+  animation: glitch2 4s infinite;
+  transform: translateX(2px);
+}
+
+/* Subtitle */
+.subtitle {
+  margin-top: 24px;
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+
+.subtitle strong { color: var(--text); font-weight: 500; }
+
+/* CTA */
+.ctaRow {
+  margin-top: 48px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+
+/* Stats */
+.stats {
+  position: absolute;
+  right: 40px; bottom: 80px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  opacity: 0;
+  animation: fadeLeft 0.8s 1.1s forwards;
+}
+
+.statItem { text-align: right; }
+
+.statNum {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.4s forwards;
+}
+
+.scrollLine {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+.scrollText {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+  opacity: 0;
+}
+
+/* ── Keyframes (must live here for CSS Modules to resolve them) ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-30px, 30px) scale(1.1); }
+  66%       { transform: translate(20px, -20px) scale(0.9); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(40px, -40px); }
+}
+
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes particleFloat {
+  0%   { transform: translateY(100vh) translateX(0);    opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-10vh) translateX(80px); opacity: 0; }
+}
+
+@keyframes glitch1 {
+  0%, 92%, 100% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+  94% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); }
+  96% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); }
+  98% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); }
+}
+
+@keyframes glitch2 {
+  0%, 93%, 100% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+  95% { clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+  97% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+  99% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { padding: 100px 20px 80px; }
+  .stats { display: none; }
+  .ctaRow { flex-direction: column; }
+  .ctaRow .btn-primary,
+  .ctaRow .btn-outline { text-align: center; }
+}

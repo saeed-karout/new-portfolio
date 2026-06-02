@@ -1,0 +1,119 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s;
+}
+
+.scrolled {
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  background: rgba(3, 5, 8, 0.8);
+  padding: 14px 40px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--accent);
+  letter-spacing: 3px;
+  cursor: none;
+  user-select: none;
+}
+
+.links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.link {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: none;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.link:hover { color: var(--accent); }
+.link:hover::after { width: 100%; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px; height: 1.5px;
+  background: var(--accent);
+  transition: all 0.3s;
+}
+
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* Mobile nav overlay */
+.mobileNav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(3, 5, 8, 0.97);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.mobileOpen {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobileLink {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 4px;
+  cursor: none;
+  transition: color 0.3s;
+}
+
+.mobileLink:hover { color: var(--accent); }
+
+@media (max-width: 768px) {
+  .nav { padding: 16px 20px; }
+  .scrolled { padding: 12px 20px; }
+  .links { display: none; }
+  .hamburger { display: flex; }
+  .mobileNav { display: flex; }
+}
