@@ -210,7 +210,7 @@ export const projects = [
     id: 19,
     title: "Portfolio v1",
     category: ["react"],
-    description: "معرض أعمال قديم — React.js + CSS",
+    description: "معرض أعمال  — React.js + CSS",
     image:  "/images/portfolio.png",
     emoji: "💼",
     site: "https://myportfolio-karout.netlify.app/",
@@ -219,19 +219,19 @@ export const projects = [
   },
   {
     id: 20,
-    title: "eCommerce HTML/CSS",
-    category: ["css"],
-    description: "متجر إلكتروني — HTML & CSS فقط",
-    image:  "/images/eCommerceCss.png",
-    emoji: "🛒",
-    site: "https://saeed-karout.github.io/e-commerce/",
-    github: "https://github.com/saeed-karout/e-commerce",
+    title: "Gym Management System",
+    category: ["vue.js","laravel"],
+    description: "نظام شامل لادارة النادي وموظفيه",
+    image:  "/images/gym.png",
+    emoji: "",
+    site: "",
+    github: "",
     featured: false,
   },
 ];
 
 // ── جميع الفلاتر المتاحة ────────────────────
-export const categories = ["all", "react", "vue.js", "mern", "bootstrap", "css", "mui", "bulma", "framework"];
+export const categories = ["all", "react", "vue.js", "mern", "bootstrap", "css", "mui", "bulma", "framework","laravel"];
 
 // ── لون كل تصنيف ────────────────────────────
 export const catColors = {
@@ -243,4 +243,5 @@ export const catColors = {
   mui:        "#1976d2",
   bulma:      "#00d1b2",
   framework:  "#ff6b6b",
+  laravel:    "#d63333"
 };
