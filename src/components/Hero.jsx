@@ -65,7 +65,7 @@ export default function Hero() {
       {/* Content */}
       <div className={styles.content}>
         <p className={styles.tag}>
-          Available for work &nbsp;·&nbsp; Frontend Developer
+          Available for work &nbsp;·&nbsp; Full Stack Developer
         </p>
 
         <h1 className={styles.name}>
