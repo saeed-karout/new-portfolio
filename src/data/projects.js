@@ -74,17 +74,17 @@ export const projects = [
     github: "https://github.com/saeed-karout/front-MUi-eco-",
     featured: false,
   },
-  {
-    id: 7,
-    title: "eCommerce Vuetify",
-    category: ["vue.js", "framework"],
-    description: "متجر إلكتروني بـ Vuetify Framework + Vue.js",
-    image:  "/images/eCommerceVuetify.png",
-    emoji: "🛍",
-    site: "https://ecom-vuetify.netlify.app/",
-    github: "https://github.com/saeed-karout/Front-eco-vuetify",
-    featured: false,
-  },
+  // {
+  //   id: 7,
+  //   title: "eCommerce Vuetify",
+  //   category: ["vue.js", "framework"],
+  //   description: "متجر إلكتروني بـ Vuetify Framework + Vue.js",
+  //   image:  "/images/eCommerceVuetify.png",
+  //   emoji: "🛍",
+  //   site: "https://ecom-vuetify.netlify.app/",
+  //   github: "https://github.com/saeed-karout/Front-eco-vuetify",
+  //   featured: false,
+  // },
   {
     id: 8,
     title: "Restaurant Babkisan",
@@ -144,7 +144,7 @@ export const projects = [
     id: 13,
     title: "Zoundr Rights",
     category: ["vue.js"],
-    description: "نظام إدارة حقوق الملكية الفكرية — ألمانيا",
+    description: "Intellectual Property Rights Management System — Germany",
     image:  "/images/rights.png",
     emoji: "⚖",
     site: "http://rights.zoundr.world/",
@@ -195,22 +195,22 @@ export const projects = [
     github: "https://github.com/saeed-karout/Animation-Earth",
     featured: false,
   },
-  {
-    id: 18,
-    title: "Bulma Fresh",
-    category: ["bulma", "bootstrap"],
-    description: "موقع بـ CSS Framework بولما",
-    image:  "/images/Bulma.png",
-    emoji: "🌿",
-    site: "https://saeed-karout.github.io/Bulma_freash/",
-    github: "https://github.com/saeed-karout/Bulma_freash/",
-    featured: false,
-  },
+  // {
+  //   id: 18,
+  //   title: "Bulma Fresh",
+  //   category: ["bulma", "bootstrap"],
+  //   description: "موقع بـ CSS Framework بولما",
+  //   image:  "/images/Bulma.png",
+  //   emoji: "🌿",
+  //   site: "https://saeed-karout.github.io/Bulma_freash/",
+  //   github: "https://github.com/saeed-karout/Bulma_freash/",
+  //   featured: false,
+  // },
   {
     id: 19,
     title: "Portfolio v1",
     category: ["react"],
-    description: "معرض أعمال  — React.js + CSS",
+    description: "Portfolio — React.js + CSS",
     image:  "/images/portfolio.png",
     emoji: "💼",
     site: "https://myportfolio-karout.netlify.app/",
@@ -221,17 +221,40 @@ export const projects = [
     id: 20,
     title: "Gym Management System",
     category: ["vue.js","laravel"],
-    description: "نظام شامل لادارة النادي وموظفيه",
+    description: "A comprehensive system for managing the club and its employees",
     image:  "/images/gym.png",
     emoji: "",
     site: "",
     github: "",
     featured: false,
   },
+  {
+    id: 21,
+    title: "ShamStores Saas Platform",
+    category: ["react",'FastAPI'],
+    description: "A platform specializing in providing e-commerce stores within Syria",
+    image: "/images/shamstores.png",
+    emoji: "",
+    site: "https://shamstores.com/",
+    github: "",
+    featured: false,
+  }
+  ,
+  {
+    id: 22,
+    title: "Zoundr Flow",
+    category: ["Vue.js"],
+    description: "A German project from the Zound series that manages songs",
+    image: "/images/flow.png",
+    emoji: "",
+    site: "https://flow.zoundr.dev/",
+    github: "",
+    featured: false,
+  }
 ];
 
 // ── جميع الفلاتر المتاحة ────────────────────
-export const categories = ["all", "react", "vue.js", "mern", "bootstrap", "css", "mui", "bulma", "framework","laravel"];
+export const categories = ["all", "react", "vue.js", "mern", "bootstrap", "css", "mui", "bulma", "framework","laravel", "Express", "FastAPI"];
 
 // ── لون كل تصنيف ────────────────────────────
 export const catColors = {
@@ -243,5 +266,7 @@ export const catColors = {
   mui:        "#1976d2",
   bulma:      "#00d1b2",
   framework:  "#ff6b6b",
-  laravel:    "#d63333"
+  laravel:    "#d63333",
+  Express:    "#000000",
+  FastAPI:    "#009688",
 };
