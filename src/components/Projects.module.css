@@ -1,56 +1,162 @@
-.projects {
-  padding: 120px 0;
-}
-
-.header {
-  padding: 0 40px;
-}
-
-/* Filter bar */
-.filterBar {
-  padding: 0 40px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
-  margin-top: 40px;
-}
-
-.filterBtn {
-  padding: 8px 20px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: none;
-  transition: all 0.3s;
-}
-
-.filterBtn:hover,
-.filterActive {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(0, 245, 196, 0.06);
-}
-
-/* Grid */
-.grid {
-  padding: 0 40px;
+/* ── Featured case studies ── */
+.features {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
+  gap: clamp(28px, 4vw, 40px);
 }
 
-@media (max-width: 768px) {
-  .projects { padding: 80px 0; }
-  .header   { padding: 0 20px; }
-  .filterBar { padding: 0 20px; }
-  .grid     { padding: 0 20px; grid-template-columns: 1fr; }
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+  padding: clamp(18px, 2.5vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
 }
 
-@media (min-width: 769px) and (max-width: 1100px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+.flip .shot { order: 2; }
+
+.shot {
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  aspect-ratio: 16 / 10;
+}
+
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s ease;
+}
+.feature:hover .shot img { transform: scale(1.02); }
+
+.featureBody { padding: 4px 4px 4px 0; }
+.flip .featureBody { padding: 4px 0 4px 4px; }
+
+.role {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.featureTitle {
+  margin-top: 8px;
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.tagline {
+  margin-top: 4px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.desc {
+  margin-top: 14px;
+  color: var(--text-2);
+  font-size: 0.97rem;
+}
+
+.points {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 0.94rem;
+  color: var(--text-2);
+}
+
+.points li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.points svg { color: var(--accent); margin-top: 3px; }
+
+.stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 22px;
+}
+
+/* ── More projects ── */
+.moreHead {
+  margin-top: clamp(64px, 8vw, 96px);
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.moreTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter:hover { border-color: var(--text); color: var(--text); }
+
+.filterActive,
+.filterActive:hover {
+  background: var(--text);
+  border-color: var(--text);
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.moreWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+@media (max-width: 960px) {
+  .feature { grid-template-columns: 1fr; }
+  .flip .shot { order: 0; }
+  .featureBody, .flip .featureBody { padding: 0 4px 4px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
 }

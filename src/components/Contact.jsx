@@ -1,119 +1,93 @@
 import { useReveal } from '../hooks/useReveal'
 import { useForm, ValidationError } from '@formspree/react'
+import { profile } from '../data/profile'
+import { Icon, LinkedInIcon, WhatsAppIcon } from './Icons'
 import styles from './Contact.module.css'
 
-const contactItems = [
-  { icon: '✉', label: 'Email',             value: 'mohamadsaeedkarout@gmail.com' },
-  { icon: '📞', label: 'Phone / WhatsApp', value: '+963 957 608 833' },
-  { icon: '📍', label: 'Location',         value: 'Damascus, Syria · Remote Worldwide' },
+const channels = [
+  { icon: <Icon name="mail" />,  label: 'Email',     value: profile.email,  href: `mailto:${profile.email}` },
+  { icon: <WhatsAppIcon />,      label: 'WhatsApp',  value: profile.phone,  href: profile.whatsapp },
+  { icon: <LinkedInIcon />,      label: 'LinkedIn',  value: 'Connect with me', href: profile.linkedin },
 ]
 
 export default function Contact() {
   const ref = useReveal()
-  const [state, handleSubmit] = useForm("mqkrbblk")
+  const [state, handleSubmit] = useForm('mqkrbblk')
 
   return (
-    <section id="contact" ref={ref} className={`section-wrapper reveal ${styles.contact}`}>
-      <div className={`section-header ${styles.header}`}>
-        <span className="section-num">03 //</span>
-        <h2 className="section-title">Contact</h2>
-        <div className="section-line" />
-      </div>
-
-      <div className={styles.inner}>
-        {/* Info side */}
-        <div className={styles.info}>
-          <h2 className={styles.bigText}>
-            LET'S <span className={styles.bigOutline}>WORK</span>
-          </h2>
-          <p className={styles.subText}>
-            Available for freelance projects, full-time positions, and collaborations.
-            Let's build something extraordinary together.
+    <section id="contact" className="section">
+      <div ref={ref} className={`container reveal ${styles.grid}`}>
+        <div>
+          <span className="eyebrow">Contact</span>
+          <h2 className="section-title">Let's work together</h2>
+          <p className={styles.lead}>
+            I'm open to full-time and remote roles, as well as freelance projects.
+            If you have a product to build or a team I could help, I'd be glad to hear from you.
           </p>
 
-          <div className={styles.items}>
-            {contactItems.map(item => (
-              <div key={item.label} className={`${styles.item} hoverable`}>
-                <span className={styles.itemIcon}>{item.icon}</span>
-                <div>
-                  <strong className={styles.itemLabel}>{item.label}</strong>
-                  <span className={styles.itemValue}>{item.value}</span>
-                </div>
-              </div>
+          <ul className={styles.channels}>
+            {channels.map(c => (
+              <li key={c.label}>
+                <a
+                  href={c.href}
+                  className={styles.channel}
+                  target={c.href.startsWith('http') ? '_blank' : undefined}
+                  rel="noreferrer"
+                >
+                  <span className={styles.channelIcon}>{c.icon}</span>
+                  <span>
+                    <span className={styles.channelLabel}>{c.label}</span>
+                    <span className={styles.channelValue}>{c.value}</span>
+                  </span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
+
+          <p className={styles.location}>
+            <Icon name="pin" size={18} /> {profile.location}
+          </p>
         </div>
 
-        {/* Form side */}
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Your Name</label>
-            <input 
-              className={styles.input} 
-              type="text" 
-              name="name"
-              placeholder="John Doe" 
-              required 
-            />
-            <ValidationError
-              prefix="Name"
-              field="name"
-              errors={state.errors}
-            />
-          </div>
-          
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Email</label>
-            <input 
-              className={styles.input} 
-              type="email" 
-              name="email"
-              placeholder="john@example.com" 
-              required 
-            />
-            <ValidationError
-              prefix="Email"
-              field="email"
-              errors={state.errors}
-            />
-          </div>
-          
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Message</label>
-            <textarea
-              className={styles.textarea}
-              name="message"
-              placeholder="Tell me about your project..."
-              rows={5}
-              required
-            />
-            <ValidationError
-              prefix="Message"
-              field="message"
-              errors={state.errors}
-            />
-          </div>
-          
-          <button
-            type="submit"
-            disabled={state.submitting}
-            className={`${styles.submit} hoverable`}
-            style={state.succeeded ? { background: '#10b981' } : {}}
-          >
-            {state.submitting 
-              ? 'Submitting...' 
-              : state.succeeded 
-                ? 'Message Sent ✓' 
-                : 'Send Message →'
-            }
-          </button>
-
-          {state.succeeded && (
-            <div className={styles.successMessage}>
-              ✓ Your message has been sent successfully!
+        <div className={styles.formCard}>
+          {state.succeeded ? (
+            <div className={styles.success} role="status">
+              <span className={styles.successIcon}><Icon name="check" size={26} /></span>
+              <h3>Thank you — message sent!</h3>
+              <p>I'll get back to you as soon as I can.</p>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} noValidate={false}>
+              <h3 className={styles.formTitle}>Send me a message</h3>
+
+              <div className={styles.row}>
+                <div className={styles.field}>
+                  <label htmlFor="contact-name">Name</label>
+                  <input id="contact-name" name="name" type="text" autoComplete="name" required />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} className={styles.error} />
+                </div>
+
+                <div className={styles.field}>
+                  <label htmlFor="contact-email">Email</label>
+                  <input id="contact-email" name="email" type="email" autoComplete="email" required />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} className={styles.error} />
+                </div>
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows={5} placeholder="Tell me a little about the role or project…" required />
+                <ValidationError prefix="Message" field="message" errors={state.errors} className={styles.error} />
+              </div>
+
+              <ValidationError errors={state.errors} className={styles.error} />
+
+              <button type="submit" className={`btn btn-primary ${styles.submit}`} disabled={state.submitting}>
+                {state.submitting ? 'Sending…' : <>Send message <Icon name="arrowRight" /></>}
+              </button>
+            </form>
           )}
-        </form>
+        </div>
       </div>
     </section>
   )
